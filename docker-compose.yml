@@ -1,0 +1,28 @@
+services:
+  fluentbit:
+    image: fluent/fluent-bit
+    container_name: fluentbit
+    ports:
+      - "5101:5101"
+      - "5102:5102"
+      - "5103:5103"
+      - "5104:5104"
+      - "5105:5105"
+      - "5106:5106"
+      - "5107:5107"
+      - "5108:5108"
+      - "5109:5109"
+    volumes:
+      - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
+      - ./custom-parsers.conf:/fluent-bit/etc/custom-parsers.conf
+      - ./inputs:/fluent-bit/etc/inputs
+      - ./filters:/fluent-bit/etc/filters
+      - ./outputs:/fluent-bit/etc/outputs
+      - ./scripts/join_datetime.lua:/fluent-bit/scripts/join_datetime.lua
+
+    networks:
+      - kafka
+networks:
+  kafka:
+    external: true
+
