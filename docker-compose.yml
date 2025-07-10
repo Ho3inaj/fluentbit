@@ -12,6 +12,7 @@ services:
       - "5107:5107"
       - "5108:5108"
       - "5109:5109"
+      - "5110:5110"
     volumes:
       - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
       - ./custom-parsers.conf:/fluent-bit/etc/custom-parsers.conf
@@ -19,6 +20,7 @@ services:
       - ./filters:/fluent-bit/etc/filters
       - ./outputs:/fluent-bit/etc/outputs
       - ./scripts/join_datetime.lua:/fluent-bit/scripts/join_datetime.lua
+      - ./scripts/join_datetime.lua:/fluent-bit/scripts/quote_json.lua
 
     networks:
       - kafka
